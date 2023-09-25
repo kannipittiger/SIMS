@@ -1,53 +1,73 @@
-<?php
-$id=$_POST["id"];
-$en_name=$_POST["en_name"];
-$en_surname=$_POST["en_surname"];
-$th_name=$_POST["th_name"];
-$th_surname=$_POST["th_surname"];
-$major_code=$_POST["major_code"];
-$email=$_POST["email"];
-//echo $id; echo $en_name; echo $en_surname; echo $th_name; echo $th_surname;
-//echo $major_code; echo $email;
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="students";
-// create connection
-$conn=mysqli_connect($servername,$username,$password,$dbname);
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Insert Student Record</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Insert Student Record</h1>
+        <?php
+        error_reporting(E_ALL);
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
 
-if(empty($id) || empty($en_name) || empty($en_surname) || empty($th_name) || empty($th_surname) || empty($major_code) || empty($email)){
-    if (!is_numeric($id))  {
-        echo "ใส่idเป็นตัวเลข</br>";
-    } 
-    if (empty($id) ) {
-      echo "ลืมกรอกid</br>";
-    } 
-    if (empty($en_name)) {
-      echo "ลืมกรอกชื่อภาษาอังกฤษ</br>";
-    }
-    if (empty($en_surname)) {
-      echo "ลืมกรอกนามสกุลภาษาอังกฤษ</br>";
-    }if (empty($th_name)) {
-      echo "ลืมกรอกชื่อภาษาไทย</br>";
-    }if (empty($th_surname)) {
-      echo "ลืมกรอกนามสกุลภาษาไทย</br>";
-    }if (empty($major_code)) {
-      echo "ลืมกรอกรหัสสาขา</br>";
-    }if (empty($email)) {
-      echo "ลืมกรอกemail</br>";
-    }
-    echo "<br><button><a href='insert_std_form.html'>Back</a></button>";
-}else if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strpos($email, '@') === false) {
-    echo "ใส่อีเมลผิดอ่ะพิมใหม่ให้หน่อย";
-    echo "<br><button><a href='./insert_std_form.html'>Back</a></button>";
-} else {
-$sql="INSERT INTO `std_info` (`id`, `en_name`, `en_surname`, `th_name`, `th_surname`, `major_code`, `email`) VALUES ('$id', '$en_name', '$en_surname', '$th_name', '$th_surname', '$major_code', '$email')";
-//echo $sql."<br>";
-$result=mysqli_query($conn,$sql);
-if($result){
-    echo "New record created successfully!</br><button><a href='student.php'>Back</a></button>";
-}
-else echo "Error: ".$sql."<br>".mysqli_error($conn);
-}
-mysqli_close($conn);
-?>
+        $id = htmlspecialchars(trim($_POST["id"]));
+        $en_name = htmlspecialchars(trim($_POST["en_name"]));
+        $en_surname = htmlspecialchars(trim($_POST["en_surname"]));
+        $th_name = htmlspecialchars(trim($_POST["th_name"]));
+        $th_surname = htmlspecialchars(trim($_POST["th_surname"]));
+        $major_code = htmlspecialchars(trim($_POST["major_code"]));
+        $email = htmlspecialchars(trim($_POST["email"]));
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "students";
+        // create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        if (empty($id) || empty($en_name) || empty($en_surname) || empty($th_name) || empty($th_surname) || empty($major_code) || empty($email)) {
+            if (empty($id)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอก ID</div>';
+            } 
+            if (empty($en_name)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอกชื่อภาษาอังกฤษ</div>';
+            }
+            if (empty($en_surname)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอกนามสกุลภาษาอังกฤษ</div>';
+            }
+            if (empty($th_name)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอกชื่อภาษาไทย</div>';
+            }
+            if (empty($th_surname)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอกนามสกุลภาษาไทย</div>';
+            }
+            if (empty($major_code)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอกรหัสสาขา</div>';
+            }
+            if (empty($email)) {
+                echo '<div class="alert alert-danger" role="alert">ลืมกรอก Email</div>';
+            }
+            echo '<br><button class="btn btn-primary"><a href="insert_std_form.html" style="color: white;">Back</a></button>';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo '<div class="alert alert-danger" role="alert">ใส่อีเมลผิดอ่ะ กรุณาพิมใหม่</div>';
+            echo '<br><button class="btn btn-primary"><a href="./insert_std_form.html" style="color: white;">Back</a></button>';
+        } else {
+            $sql = "INSERT INTO `std_info` (`id`, `en_name`, `en_surname`, `th_name`, `th_surname`, `major_code`, `email`) VALUES ('$id', '$en_name', '$en_surname', '$th_name', '$th_surname', '$major_code', '$email')";
+            // echo $sql."<br>";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                echo '<div class="alert alert-success" role="alert">New record created successfully!</div>';
+                echo '<button class="btn btn-primary"><a href="student.php" style="color: white;">Back</a></button>';
+            } else {
+                echo '<div class="alert alert-danger" role="alert">Error: ' . $sql . '<br>' . mysqli_error($conn) . '</div>';
+            }
+        }
+        mysqli_close($conn);
+        ?>
+    </div>
+</html>

@@ -1,16 +1,48 @@
 <!DOCTYPE html>
 <html lang="th">
-<head><meta charset="UTF-8"></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Your Page Title</title>
+</head>
 <body>
-<form method="post" action="./insert_std.php">
-id: <input type="text" name="id"></br>
-name:<input type="text" name="en_name"></br>
-surname:<input type="text" name="en_surname"></br>
-ชื่อ:<input type="text" name="th_name"></br>
-นามสกุล:<input type="text" name="th_surname"></br>
-Major:<input type="text" name="major_code"></br>
-Email:<input type="text" name="email"></br>
-<input type="submit"><input type="reset">
-</form>
+    <div class="container mt-5">
+        <h1 class="text-center">Student Information</h1>
+        <!-- Form for inserting student data -->
+        <form method="post" action="./insert_std.php" class="mt-4">
+            <div class="mb-3">
+                <label for="id" class="form-label">ID</label>
+                <input type="text" class="form-control" id="id" name="id" required>
+            </div>
+            <div class="mb-3">
+                <label for="en_name" class="form-label">Name (English)</label>
+                <input type="text" class="form-control" id="en_name" name="en_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="en_surname" class="form-label">Surname (English)</label>
+                <input type="text" class="form-control" id="en_surname" name="en_surname" required>
+            </div>
+            <div class="mb-3">
+                <label for="th_name" class="form-label">ชื่อ (ไทย)</label>
+                <input type="text" class="form-control" id="th_name" name="th_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="th_surname" class="form-label">นามสกุล (ไทย)</label>
+                <input type="text" class="form-control" id="th_surname" name="th_surname" required>
+            </div>
+            <div class="mb-3">
+                <label for="major_code" class="form-label">Major</label>
+                <input type="text" class="form-control" id="major_code" name="major_code" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </form>
+    </div>
 </body>
 </html>
