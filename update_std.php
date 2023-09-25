@@ -18,6 +18,9 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check if any input is empty
 if(empty($id) || empty($en_name) || empty($en_surname) || empty($th_name) || empty($th_surname) || empty($major_code) || empty($email)){
+  if (!is_numeric($id))  {
+    echo "ใส่idเป็นตัวเลข</br>";
+  } 
   if (empty($id) ) {
     echo "ลืมกรอกid</br>";
   } 
