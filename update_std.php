@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Update Student Record</title>
 </head>
@@ -30,11 +29,10 @@
 
         // Check if any input is empty
         if (empty($id) || empty($en_name) || empty($en_surname) || empty($th_name) || empty($th_surname) || empty($major_code) || empty($email)) {
-            if (!is_numeric($id)) {
-                echo '<div class="alert alert-danger" role="alert">ใส่idเป็นตัวเลข</div>';
-            }
             if (empty($id)) {
                 echo '<div class="alert alert-danger" role="alert">ลืมกรอกid</div>';
+            } else if (!is_numeric($id)) {
+              echo '<div class="alert alert-danger" role="alert">ใส่idเป็นตัวเลข</div>';
             }
             if (empty($en_name)) {
                 echo '<div class="alert alert-danger" role="alert">ลืมกรอกชื่อภาษาอังกฤษ</div>';

@@ -9,14 +9,13 @@ ini_set('display_startup_errors', '1');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Your Page Title</title>
+    <title>Title</title>
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Student Information</h1>
-        <!-- Display student information table -->
+
         <?php
         $servername = "localhost";
         $username = "root";

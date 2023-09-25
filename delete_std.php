@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Delete Student Record</title>
 </head>
@@ -21,7 +20,6 @@
 
         $id = $_GET['id'];
 
-        // sql to delete a record
         $sql = "DELETE FROM `std_info` WHERE `id`='$id'";
         if (mysqli_query($conn, $sql)) {
             echo '<div class="alert alert-success" role="alert">Record deleted successfully</div>';

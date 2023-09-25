@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Insert Student Record</title>
 </head>
@@ -33,7 +32,9 @@
         if (empty($id) || empty($en_name) || empty($en_surname) || empty($th_name) || empty($th_surname) || empty($major_code) || empty($email)) {
             if (empty($id)) {
                 echo '<div class="alert alert-danger" role="alert">ลืมกรอก ID</div>';
-            } 
+            } else if (!is_numeric($id)){
+                echo '<div class="alert alert-danger" role="alert">ใส่เป็นตัวเลข</div>';
+            }
             if (empty($en_name)) {
                 echo '<div class="alert alert-danger" role="alert">ลืมกรอกชื่อภาษาอังกฤษ</div>';
             }
@@ -58,7 +59,7 @@
             echo '<br><button class="btn btn-primary"><a href="./insert_std_form.html" style="color: white;">Back</a></button>';
         } else {
             $sql = "INSERT INTO `std_info` (`id`, `en_name`, `en_surname`, `th_name`, `th_surname`, `major_code`, `email`) VALUES ('$id', '$en_name', '$en_surname', '$th_name', '$th_surname', '$major_code', '$email')";
-            // echo $sql."<br>";
+
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 echo '<div class="alert alert-success" role="alert">New record created successfully!</div>';
